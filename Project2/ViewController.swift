@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Score", style: .plain, target: self, action: #selector(showScore))
         
         countries += ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria",
                     "poland", "russia", "spain", "uk", "us"]
@@ -34,6 +36,8 @@ class ViewController: UIViewController {
         askQuestion()
         
     }
+    
+    
 
     func askQuestion(action: UIAlertAction! = nil) {
         countries.shuffle()
@@ -43,7 +47,10 @@ class ViewController: UIViewController {
         button2.setImage(UIImage(named: countries[1]), for: .normal)
         button3.setImage(UIImage(named: countries[2]), for: .normal)
         
-        title = countries[correctAnswer].uppercased() + " Score: \(score)"
+        title = countries[correctAnswer].uppercased()
+        
+        // Use code below for Project 2 challenge
+        //title = countries[correctAnswer].uppercased() + " Score: \(score)"
         
         
     }
@@ -75,6 +82,14 @@ class ViewController: UIViewController {
             let ac2 = UIAlertController(title: "You have answered 10 questions", message: "Your final score is \(score)", preferredStyle: .alert)
             present(ac2, animated: false)
         }
+    }
+    
+    // Additional code from challenge in Project3
+    @objc func showScore() {
+        let ac = UIAlertController(title: "Current Score",  message: "\(score)", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Continue", style: .cancel, handler: nil))
+            present(ac, animated: true)
+        
     }
 }
 
