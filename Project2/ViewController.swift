@@ -74,13 +74,16 @@ class ViewController: UIViewController {
         }
         
         noOfPlays += 1
-        if noOfPlays <= 10 {
+        if noOfPlays < 10 {
             let ac = UIAlertController(title: title, message: printMessage, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
             present(ac, animated: true)
         } else {
-            let ac2 = UIAlertController(title: "You have answered 10 questions", message: "Your final score is \(score)", preferredStyle: .alert)
-            present(ac2, animated: false)
+            let ac = UIAlertController(title: "You have answered 10 questions", message: "Your final score is \(score)", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Play again!", style: .default, handler: askQuestion))
+            present(ac, animated: true)
+            noOfPlays = 0
+            score = 0
         }
     }
     
